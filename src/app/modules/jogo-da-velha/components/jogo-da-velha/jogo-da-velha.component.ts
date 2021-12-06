@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JogoDaVelhaService } from '../../shared/jogo-da-velha.service';
 
-
 @Component({
   selector: 'app-jogo-da-velha',
   templateUrl: './jogo-da-velha.component.html',
@@ -27,8 +26,32 @@ export class JogoDaVelhaComponent implements OnInit {
     return this.jogoDaVelhaService.showEnd;
   }
 
+  get player() : number {
+    return this.jogoDaVelhaService.player;
+  }
+
   startGame():void {
     this.jogoDaVelhaService.startGame();
+  }
+
+  play(posX: number, posY: number):void {
+    this.jogoDaVelhaService.play(posX, posY);
+  }
+
+  showX(posX: number, posY: number): boolean {
+    return this.jogoDaVelhaService.showX(posX, posY);
+  }
+
+  showO(posX: number, posY: number): boolean {
+    return this.jogoDaVelhaService.showO(posX, posY);
+  }
+
+  showVictory(posX: number, posY: number): boolean {
+    return this.jogoDaVelhaService.showVictory(posX, posY);
+  }
+
+  newMatch() : void {
+    this.jogoDaVelhaService.newMatch();
   }
 
 }

@@ -25,6 +25,8 @@ export class JogoDaVelhaService {
     this._showEnd = false;
     this.movesAmount = 0;
     this._player = this.X;
+    this.victory = false;
+    this.initializeTable();
    }
 
   initialize(): void {
@@ -56,6 +58,10 @@ export class JogoDaVelhaService {
     return this._showEnd;
   }
 
+  get player(): number {
+    return this._player;
+  }
+
   startGame(): void {
     this._showStart = false;
     this._showTable = true;
@@ -69,9 +75,12 @@ export class JogoDaVelhaService {
     this.movesAmount++;
     this.victory = this.finishMatch(posX, posY, this.table, this._player);
     this._player = (this._player === this.X) ? this.O : this.X;
+    
+    // !!!!!!!!!!!!! //
     if (!this.victory && this.movesAmount < 9) {
       this.cpuPlay();
     }
+
     if(this.victory !== false) {
       this._showEnd = true;
     }
@@ -124,7 +133,7 @@ export class JogoDaVelhaService {
     let movement: number[] = this.getMovement(this.O);
 
     if (movement.length <= 0) {
-      let movement = this.getMovement(this.X);
+      movement = this.getMovement(this.X);
     }
 
     if (movement.length <= 0) {
@@ -170,7 +179,7 @@ export class JogoDaVelhaService {
     return this.table[posX][posY] === this.X;
   }
 
-  showY(posX: number, posY: number) : boolean {
+  showO(posX: number, posY: number) : boolean {
     return this.table[posX][posY] === this.O;
   }
 
